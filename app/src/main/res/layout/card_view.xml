@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/card"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center"
+             android:clipChildren="false"
+             android:layout_gravity="center"
+             android:addStatesFromChildren="true"
+             android:layout_centerInParent="true">
+
+
+    <RelativeLayout
+        android:id="@+id/front"
+        android:clipChildren="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_player_card"/>
+
+        <RelativeLayout
+            android:clipChildren="false"
+            android:background="@color/dark_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:clipChildren="false"
+                android:layout_alignParentTop="true"
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <TextView
+                android:clipChildren="false"
+                android:layout_below="@id/image"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:clipChildren="false"
+                android:layout_below="@id/title"
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:clipChildren="false"
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+
+</ViewFlipper>

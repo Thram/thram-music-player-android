@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Thram Music Player</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="equalizer_title">Equalizer:</string>
+    <string name="cd_background">Background</string>
+</resources>
