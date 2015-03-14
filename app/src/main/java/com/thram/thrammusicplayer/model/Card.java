@@ -8,31 +8,26 @@ public class Card {
     public final String tag;
     public final String title;
     public final String description;
-    public final String imagePath;
+    public final Integer drawableFrontId;
+    public final Integer drawableBackId;
     public final Integer color;
 
-
-    public Card(String ta, String t, String d) {
-        tag = ta;
-        title = t;
-        description = d;
-        imagePath = null;
-        color = null;
-    }
-
-    public Card(String ta, String t, String d, String i) {
-        tag = ta;
-        title = t;
-        description = d;
-        imagePath = i;
-        color = null;
-    }
 
     public Card(String ta, String t, String d, int c) {
         tag = ta;
         title = t;
         description = d;
-        imagePath = null;
+        drawableFrontId = null;
+        drawableBackId = null;
         color = c;
+    }
+
+    public Card(String ta, String t, String d, int c, int dIF, int dIB) {
+        tag = ta;
+        title = t;
+        description = d;
+        color = c;
+        drawableFrontId = dIF;
+        drawableBackId = dIB;
     }
 }

@@ -7,12 +7,16 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by thram on 8/03/15.
  */
 public class App extends Application {
     public static AssetManager assetManager;
     public static Context context;
+    public static Picasso picasso;
+
 
     public void onCreate() {
         super.onCreate();
@@ -24,6 +28,7 @@ public class App extends Application {
         Display.density = metrics.density;
         Display.width = metrics.widthPixels;
         Display.height = metrics.heightPixels;
+        picasso = new Picasso.Builder(App.context).build();
     }
 
     public static class Display {
@@ -35,7 +40,7 @@ public class App extends Application {
     }
 
     public static class Preferences {
-        public static final String DEFAULT_WALLPAPER_THRAM = "wallpapers/psychedelic_wallpaper_02.gif";
+        public static final String DEFAULT_WALLPAPER_THRAM = "wallpapers/psychedelic_wallpaper_11.gif";
         public static SharedPreferences settings = null;
     }
 

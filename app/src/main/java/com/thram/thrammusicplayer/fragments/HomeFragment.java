@@ -40,12 +40,12 @@ public class HomeFragment extends Fragment {
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
         grid.setColumnWidth(App.Display.width / 2);
         final ArrayList<Card> cards = new ArrayList<>();
-        cards.add(new Card("player", "Player", "Let's start playing some music!", getResources().getColor(R.color.player_color)));
-        cards.add(new Card("library", "Library", "Look for some music in your phone.", getResources().getColor(R.color.library_color)));
-        cards.add(new Card("news", "News", "All you want to know about your music.", getResources().getColor(R.color.news_color)));
-        cards.add(new Card("playlist", "Playlist", "Arrange songs as you want.\nYou're your own DJ. ;)", getResources().getColor(R.color.playlist_color)));
-        cards.add(new Card("lyrics", "Lyrics", "Look for a lyric to sing your favourites songs.", getResources().getColor(R.color.lyrics_color)));
-        cards.add(new Card("settings", "Settings", "Settings and stuff.", getResources().getColor(R.color.settings_color)));
+        cards.add(new Card("player", getResources().getString(R.string.player_card_title), getResources().getString(R.string.player_card_description), getResources().getColor(R.color.player_color), R.drawable.ic_player_card, R.drawable.ic_player_card_back));
+        cards.add(new Card("library", getResources().getString(R.string.library_card_title), getResources().getString(R.string.library_card_description), getResources().getColor(R.color.library_color), R.drawable.ic_library_card, R.drawable.ic_library_card_back));
+        cards.add(new Card("news", getResources().getString(R.string.news_card_title), getResources().getString(R.string.news_card_description), getResources().getColor(R.color.news_color), R.drawable.ic_news_card, R.drawable.ic_news_card_back));
+        cards.add(new Card("playlist", getResources().getString(R.string.playlist_card_title), getResources().getString(R.string.playlist_card_description), getResources().getColor(R.color.playlist_color), R.drawable.ic_playlist_card, R.drawable.ic_playlist_card_back));
+        cards.add(new Card("lyrics", getResources().getString(R.string.lyrics_card_title), getResources().getString(R.string.lyrics_card_description), getResources().getColor(R.color.lyrics_color), R.drawable.ic_lyrics_card, R.drawable.ic_lyrics_card_back));
+        cards.add(new Card("settings", getResources().getString(R.string.settings_card_title), getResources().getString(R.string.settings_card_description), getResources().getColor(R.color.settings_color), R.drawable.ic_settings_card, R.drawable.ic_settings_card_back));
         CardGridViewAdapter adapter = new CardGridViewAdapter(getActivity(), cards);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

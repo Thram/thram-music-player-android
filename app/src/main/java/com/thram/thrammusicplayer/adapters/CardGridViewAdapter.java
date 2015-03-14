@@ -47,9 +47,15 @@ public class CardGridViewAdapter extends ArrayAdapter<Card> {
         holder.title.setText(card.title);
         holder.description = (TextView) cell.findViewById(R.id.description);
         holder.description.setText(card.description);
-        if (card.imagePath != null) {
-            holder.image = (ImageView) cell.findViewById(R.id.image);
-//            Use Picasso to set image
+        if (card.drawableFrontId != null) {
+            holder.imageFront = (ImageView) cell.findViewById(R.id.image);
+            App.picasso.load(card.drawableFrontId).into(holder.imageFront);
+            holder.imageFront.setVisibility(View.VISIBLE);
+        }
+        if (card.drawableBackId != null) {
+            holder.imageBack = (ImageView) cell.findViewById(R.id.image_back);
+            App.picasso.load(card.drawableBackId).into(holder.imageBack);
+            holder.imageBack.setVisibility(View.VISIBLE);
         }
 
         int start = 100 + position * 100;
@@ -61,6 +67,7 @@ public class CardGridViewAdapter extends ArrayAdapter<Card> {
     static class ViewHolder {
         TextView title;
         TextView description;
-        ImageView image;
+        ImageView imageFront;
+        ImageView imageBack;
     }
 }

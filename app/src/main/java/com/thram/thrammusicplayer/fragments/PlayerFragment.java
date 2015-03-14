@@ -28,12 +28,12 @@ import pl.droidsonroids.gif.GifImageView;
 
 /**
  * Created by thram on 8/03/15.
- *
+ * <p/>
  * Player Fragment
  */
 public class PlayerFragment extends Fragment {
 
-    private static final float VISUALIZER_HEIGHT_DIP = 300f;
+    private static final float VISUALIZER_HEIGHT_DIP = 200f;
     private String fileUri;
     private ViewGroup rootView;
 
@@ -51,6 +51,7 @@ public class PlayerFragment extends Fragment {
         GifImageView gifView = (GifImageView) rootView.findViewById(R.id.background);
         try {
             GifDrawable gif = new GifDrawable(App.assetManager, App.Preferences.DEFAULT_WALLPAPER_THRAM);
+            gif.setSpeed(.5f);
             gifView.setImageDrawable(gif);
         } catch (IOException e) {
             e.printStackTrace();

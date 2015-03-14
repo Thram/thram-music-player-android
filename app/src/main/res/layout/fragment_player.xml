@@ -32,6 +32,7 @@
                 android:id="@+id/visualizer_container"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
+                android:background="@color/darker_overlay"
                 android:layout_height="wrap_content">
 
             </RelativeLayout>

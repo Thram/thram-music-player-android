@@ -38,7 +38,7 @@ public class VisualizerView extends View {
         mBytes = null;
         mForePaint.setStrokeWidth(4f);
         mForePaint.setAntiAlias(true);
-        mForePaint.setAlpha(80);                             //you can set your transparent value here
+        mForePaint.setAlpha(90);                             //you can set your transparent value here
 
         Random rnd = new Random();
 //        mForePaint.setShader(new LinearGradient(0, 0, 0, 200, Color.RED, Color.GREEN, Shader.TileMode.MIRROR));

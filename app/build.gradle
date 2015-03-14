@@ -24,6 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.sothree.slidinguppanel:library:3.0.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.2'
+    compile 'com.squareup.picasso:picasso:2.5.0'
 }
 
 buildscript {
