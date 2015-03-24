@@ -2,9 +2,10 @@ package com.thram.thrammusicplayer.activities;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.thram.thrammusicplayer.R;
 
@@ -12,7 +13,7 @@ import com.thram.thrammusicplayer.R;
  * Created by thram on 8/03/15.
  */
 public class ThramMusicPlayerActivity extends ActionBarActivity {
-    protected Toolbar toolbar;
+    public static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +27,27 @@ public class ThramMusicPlayerActivity extends ActionBarActivity {
             getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.home_color)));
     }
 
-    public void showToolbar(boolean animated) {
-        toolbar.setVisibility(View.VISIBLE);
+    public void setupToolbar(String title, String subtitle) {
+        toolbar.getMenu().clear();
+        setTitle(title);
+        if (subtitle == null)
+            subtitle = " ";
+        toolbar.setSubtitle(subtitle);
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.light_overlay));
     }
 
-    public void hideToolbar(boolean animated) {
-        toolbar.setVisibility(View.GONE);
+    public void changeFragment(Fragment fragment, String tag) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        ft.replace(R.id.container, fragment, tag);
+        ft.addToBackStack(null);
+        ft.commit();
     }
+
+    public void setupToolbar(String title) {
+        setupToolbar(title, null);
+    }
+
+
 }
 

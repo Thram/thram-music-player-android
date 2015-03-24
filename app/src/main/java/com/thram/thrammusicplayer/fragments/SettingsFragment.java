@@ -19,7 +19,7 @@ import static android.os.Environment.getExternalStorageState;
 
 /**
  * Created by thram on 8/03/15.
- *
+ * <p/>
  * Setup library path, equalizer presets, account?
  */
 public class SettingsFragment extends Fragment {
@@ -32,8 +32,9 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((ThramMusicPlayerActivity) getActivity()).setWindowsBackground(getResources().getColor(R.color.settings_color));
-        getActivity().setTitle("Settings");
+        final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
+        activity.setupToolbar("Settings");
+        activity.setWindowsBackground(getResources().getColor(R.color.settings_color));
         //getting SDcard root path
         final String state = getExternalStorageState();
         if (MEDIA_MOUNTED.equals(state)) {

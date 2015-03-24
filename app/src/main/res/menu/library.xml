@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/order"
+        android:icon="@drawable/ic_order_asc"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        android:title="@string/order_label"/>
+    <item
+        android:id="@+id/view"
+        android:icon="@drawable/ic_view_music_data"
+        android:orderInCategory="0"
+        app:showAsAction="always"
+        android:title="@string/music_data_view_label"/>
+</menu>

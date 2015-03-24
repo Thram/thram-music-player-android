@@ -37,12 +37,13 @@ import android.widget.ViewAnimator;
  * Furthermore, utility methods are provided for initiating fade-in-then-out and flip animations.
  *
  * @author Ephraim A. Tekle
+ * @author thram
  */
 public class AnimationFactory {
 
     private static final int DEFAULT_FLIP_TRANSITION_DURATION = 500;
 
-    public static enum LeaveDirection {
+    public static enum TranslateDirection {
         LEFT,
         RIGHT,
         TOP,

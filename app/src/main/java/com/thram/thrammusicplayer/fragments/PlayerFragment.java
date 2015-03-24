@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.thram.thrammusicplayer.App;
 import com.thram.thrammusicplayer.R;
 import com.thram.thrammusicplayer.activities.ThramMusicPlayerActivity;
+import com.thram.thrammusicplayer.model.AudioFile;
 import com.thram.thrammusicplayer.utils.MediaPlayerManager;
 import com.thram.thrammusicplayer.views.VisualizerView;
 
@@ -34,19 +35,20 @@ import pl.droidsonroids.gif.GifImageView;
 public class PlayerFragment extends Fragment {
 
     private static final float VISUALIZER_HEIGHT_DIP = 200f;
-    private String fileUri;
+    private AudioFile audioFile;
     private ViewGroup rootView;
 
 
-    public static PlayerFragment newInstance(String fileUri) {
+    public static PlayerFragment newInstance(AudioFile audioFile) {
         PlayerFragment playerFragment = new PlayerFragment();
-        playerFragment.fileUri = fileUri;
+        playerFragment.audioFile = audioFile;
         return playerFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((ThramMusicPlayerActivity) getActivity()).setWindowsBackground(getResources().getColor(R.color.player_color));
+        final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
+        activity.setWindowsBackground(getResources().getColor(R.color.player_color));
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_player, container, false);
         GifImageView gifView = (GifImageView) rootView.findViewById(R.id.background);
         try {
@@ -57,8 +59,9 @@ public class PlayerFragment extends Fragment {
             e.printStackTrace();
         }
         getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        if (fileUri == null && MediaPlayerManager.player == null) {
-            Toast.makeText(getActivity(), "Select a file from the library...", Toast.LENGTH_SHORT).show();
+        if (audioFile == null && !MediaPlayerManager.isPlaying()) {
+            activity.changeFragment(LibraryFragment.newInstance(), "Library Fragment");
+            Toast.makeText(getActivity(), "Select a file from the library...", Toast.LENGTH_LONG).show();
         } else {
             setupMediaPlayer();
         }
@@ -68,21 +71,20 @@ public class PlayerFragment extends Fragment {
     private void setupMediaPlayer() {
         TextView mStatusTextView = (TextView) rootView.findViewById(R.id.player_status);
         try {
-            MediaPlayerManager.prepare(Uri.parse(fileUri));
+            MediaPlayerManager.prepare(Uri.parse(audioFile.fileUri));
         } catch (IOException e) {
-            Toast.makeText(getActivity(), "Error trying to open the file...", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
         setupVisualizerFxAndUI();
         setupEqualizerFxAndUI();
-
+//
         MediaPlayerManager.start();
         mStatusTextView.setText("Playing audio...");
     }
 
     private void setupEqualizerFxAndUI() {
-        // Create the Equalizer object (an AudioEffect subclass) and attach it to our media player,
+        // Create the Equalizer object (an AudioEffect subclass) and attach it to our media playerA,
         // with a default priority (0).
         short bands = MediaPlayerManager.equalizer.getNumberOfBands();
 
@@ -153,7 +155,7 @@ public class PlayerFragment extends Fragment {
                 (int) (VISUALIZER_HEIGHT_DIP * getResources().getDisplayMetrics().density)));
         ((RelativeLayout) rootView.findViewById(R.id.visualizer_container)).addView(mVisualizerView);
 
-        // Create the Visualizer object and attach it to our media player.
+        // Create the Visualizer object and attach it to our media playerA.
         MediaPlayerManager.setOnDataCaptureListener(new Visualizer.OnDataCaptureListener() {
             public void onWaveFormDataCapture(Visualizer visualizer, byte[] bytes, int samplingRate) {
                 mVisualizerView.updateVisualizer(bytes);

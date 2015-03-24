@@ -13,7 +13,6 @@ import android.widget.ViewFlipper;
 import com.thram.thrammusicplayer.App;
 import com.thram.thrammusicplayer.R;
 import com.thram.thrammusicplayer.model.Card;
-import com.thram.thrammusicplayer.utils.Animations;
 
 import java.util.List;
 
@@ -57,9 +56,6 @@ public class CardGridViewAdapter extends ArrayAdapter<Card> {
             App.picasso.load(card.drawableBackId).into(holder.imageBack);
             holder.imageBack.setVisibility(View.VISIBLE);
         }
-
-        int start = 100 + position * 100;
-        Animations.enter(cell, 200, start);
         return cell;
     }
 

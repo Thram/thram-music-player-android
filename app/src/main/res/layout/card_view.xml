@@ -30,7 +30,6 @@
                 android:contentDescription="@string/icon_label"/>
 
             <TextView
-                android:layout_below="@id/image"
                 android:id="@+id/title"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"

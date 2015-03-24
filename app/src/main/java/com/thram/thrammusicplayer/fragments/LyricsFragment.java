@@ -33,8 +33,9 @@ public class LyricsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((ThramMusicPlayerActivity) getActivity()).setWindowsBackground(getResources().getColor(R.color.lyrics_color));
-        getActivity().setTitle("Lyrics");
+        final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
+        activity.setupToolbar("Lyrics", "Search for your favourites songs");
+        activity.setWindowsBackground(getResources().getColor(R.color.lyrics_color));
         //getting SDcard root path
         final String state = getExternalStorageState();
         if (MEDIA_MOUNTED.equals(state)) {

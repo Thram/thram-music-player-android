@@ -2,9 +2,8 @@
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
              android:id="@+id/file_item"
              android:layout_width="match_parent"
-             android:layout_height="100dp"
+             android:layout_height="50dp"
              android:gravity="center"
-             android:clipChildren="false"
              android:layout_gravity="center"
              android:addStatesFromChildren="true"
              android:layout_centerInParent="true">
@@ -12,24 +11,141 @@
 
     <RelativeLayout
         android:id="@+id/front"
-        android:clipChildren="false"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
         android:background="@color/lighter_overlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/ic_play_front"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_play_light"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/playing_label"/>
+
         <TextView
-            android:id="@+id/file_display_name"
+            android:id="@+id/title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:singleLine="true"
+            android:paddingLeft="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/duration"
+            android:singleLine="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="top|end"
+            android:paddingRight="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/album"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:paddingLeft="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/artist"
+            android:textSize="12sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="bottom|end"
+            android:singleLine="true"
+            android:paddingRight="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:clipChildren="false"
         android:id="@+id/back"
-        android:background="@color/dark_overlay"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/gray_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_play_back"
+            android:visibility="gone"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_play_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/playing_label"/>
+
+        <TextView
+            android:id="@+id/file_name"
+            android:paddingLeft="25dp"
+            android:textColor="@color/primary_light"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/size"
+            android:singleLine="true"
+            android:paddingRight="25dp"
+            android:textColor="@color/primary_light"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="top|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/folder"
+            android:paddingLeft="25dp"
+            android:textColor="@color/primary_light"
+            android:singleLine="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/bitrate"
+            android:paddingRight="25dp"
+            android:textColor="@color/primary_light"
+            android:singleLine="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:gravity="bottom|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
 </ViewFlipper>

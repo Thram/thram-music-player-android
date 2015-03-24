@@ -41,9 +41,16 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:background="@color/dark_overlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/player_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/equalizer_title"

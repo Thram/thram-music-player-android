@@ -3,7 +3,8 @@
     <color name="accent">#88FFFFFF</color>
     <color name="dark_overlay">#11000000</color>
     <color name="darker_overlay">#55000000</color>
-    <color name="lighter_overlay">#BBFFFFFF</color>
+    <color name="gray_overlay">#BF979797</color>
+    <color name="lighter_overlay">#BFFFFFFF</color>
     <color name="light_overlay">#55FFFFFF</color>
     <color name="home_color">#3F51B5</color>
     <color name="player_color">#33B5E5</color>

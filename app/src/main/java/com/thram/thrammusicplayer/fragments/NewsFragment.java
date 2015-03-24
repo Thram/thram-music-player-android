@@ -32,8 +32,9 @@ public class NewsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((ThramMusicPlayerActivity) getActivity()).setWindowsBackground(getResources().getColor(R.color.news_color));
-        getActivity().setTitle("News");
+        final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
+        activity.setupToolbar("News");
+        activity.setWindowsBackground(getResources().getColor(R.color.news_color));
         //getting SDcard root path
         final String state = getExternalStorageState();
         if (MEDIA_MOUNTED.equals(state)) {

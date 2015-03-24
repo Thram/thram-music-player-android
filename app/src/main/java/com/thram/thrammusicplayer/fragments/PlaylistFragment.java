@@ -32,8 +32,9 @@ public class PlaylistFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((ThramMusicPlayerActivity) getActivity()).setWindowsBackground(getResources().getColor(R.color.playlist_color));
-        getActivity().setTitle("Playlist");
+        final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
+        activity.setupToolbar("Playlist");
+        activity.setWindowsBackground(getResources().getColor(R.color.playlist_color));
         //getting SDcard root path
         final String state = getExternalStorageState();
         if (MEDIA_MOUNTED.equals(state)) {

@@ -4,8 +4,10 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:layout_alignParentTop="true"
+    android:paddingLeft="20dp"
     android:minHeight="?attr/actionBarSize"
     android:background="@color/darker_overlay"
     app:theme="@style/AppTheme.ToolbarStyle"
+    app:popupTheme="@style/AppTheme.ToolbarStyle"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"/>

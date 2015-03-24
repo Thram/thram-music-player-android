@@ -32,10 +32,4 @@ public class ID3Tags {
     public String track;
     public String year;
 
-    public ID3Tags(String title, String album, String artist, String length) {
-        this.title = title;
-        this.album = album;
-        this.artists = artist;
-        this.length = length;
-    }
 }
