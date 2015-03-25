@@ -19,10 +19,11 @@ import static android.os.Environment.getExternalStorageState;
 
 /**
  * Created by thram on 8/03/15.
- *
+ * <p/>
  * Use http://api.wikia.com/wiki/LyricWiki_API to get the lyrics
  */
 public class LyricsFragment extends Fragment {
+    public static String TAG = "LyricsFragment";
 
     public final String DEFAULT_LIBRARY_PATH = "Music";
 
@@ -34,7 +35,7 @@ public class LyricsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
-        activity.setupToolbar("Lyrics", "Search for your favourites songs");
+        activity.setupToolbar(getResources().getString(R.string.lyrics_fragment_title), getResources().getString(R.string.lyrics_fragment_subtitle));
         activity.setWindowsBackground(getResources().getColor(R.color.lyrics_color));
         //getting SDcard root path
         final String state = getExternalStorageState();

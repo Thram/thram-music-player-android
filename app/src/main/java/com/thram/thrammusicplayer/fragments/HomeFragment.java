@@ -24,6 +24,8 @@ import java.util.ArrayList;
  * Created by thram on 8/03/15.
  */
 public class HomeFragment extends Fragment {
+    public static String TAG = "HomeFragment";
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
@@ -31,7 +33,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
-        activity.setupToolbar("Home", "Welcome to Thram Music Player");
+        activity.setupToolbar(getResources().getString(R.string.home_fragment_title), getResources().getString(R.string.home_fragment_subtitle));
         ((ThramMusicPlayerActivity) getActivity()).setWindowsBackground(null);
         final View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
@@ -75,25 +77,25 @@ public class HomeFragment extends Fragment {
                                 if (animationsStarted[0] == animationsEnded[0]) {
                                     switch (card.tag) {
                                         case "playerA":
-                                            activity.changeFragment(PlayerFragment.newInstance(null), "Player Fragment");
+                                            activity.changeFragment(PlayerFragment.newInstance(null), PlayerFragment.TAG);
                                             break;
                                         case "library":
-                                            activity.changeFragment(LibraryFragment.newInstance(), "Library Fragment");
+                                            activity.changeFragment(LibraryFragment.newInstance(), LibraryFragment.TAG);
                                             break;
                                         case "playlist":
-                                            activity.changeFragment(PlaylistFragment.newInstance(), "Playlist Fragment");
+                                            activity.changeFragment(PlaylistFragment.newInstance(), PlaylistFragment.TAG);
                                             break;
                                         case "news":
-                                            activity.changeFragment(NewsFragment.newInstance(), "News Fragment");
+                                            activity.changeFragment(NewsFragment.newInstance(), NewsFragment.TAG);
                                             break;
                                         case "lyrics":
-                                            activity.changeFragment(LyricsFragment.newInstance(), "Lyrics Fragment");
+                                            activity.changeFragment(LyricsFragment.newInstance(), LyricsFragment.TAG);
                                             break;
                                         case "settings":
-                                            activity.changeFragment(SettingsFragment.newInstance(), "Settings Fragment");
+                                            activity.changeFragment(SettingsFragment.newInstance(), SettingsFragment.TAG);
                                             break;
                                         default:
-                                            activity.changeFragment(HomeFragment.newInstance(), "Home Fragment");
+                                            activity.changeFragment(HomeFragment.newInstance(), HomeFragment.TAG);
 
                                     }
                                 }

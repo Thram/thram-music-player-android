@@ -2,12 +2,11 @@ package com.thram.thrammusicplayer.activities;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.thram.thrammusicplayer.R;
 
@@ -39,11 +38,16 @@ public class ThramMusicPlayerActivity extends ActionBarActivity {
     }
 
     public void changeFragment(Fragment fragment, String tag) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         ft.replace(R.id.container, fragment, tag);
-        ft.addToBackStack(null);
+        ft.addToBackStack(tag);
         ft.commit();
+    }
+
+    public void popBackStack() {
+        getSupportFragmentManager().popBackStack();
     }
 
     public void setupToolbar(String title) {

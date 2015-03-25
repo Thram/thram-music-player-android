@@ -86,7 +86,7 @@ public class MediaPlayerManager {
                 crossFade();
             } else {
                 currentPlayer = auxPlayer;
-                currentPlayer.start();
+                fadeIn(currentPlayer, 1500);
                 auxPlayer = null;
             }
 
@@ -94,8 +94,8 @@ public class MediaPlayerManager {
     }
 
     private static void crossFade() {
-        MediaPlayerManager.fadeOut(currentPlayer, 1500);
-        MediaPlayerManager.fadeIn(auxPlayer, 1500);
+        fadeOut(currentPlayer, 1500);
+        fadeIn(auxPlayer, 1500);
         currentPlayer = auxPlayer;
         auxPlayer = null;
     }

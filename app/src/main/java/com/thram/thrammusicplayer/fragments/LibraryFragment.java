@@ -32,6 +32,7 @@ import static android.os.Environment.getExternalStorageState;
  */
 public class LibraryFragment extends Fragment {
 
+    public static String TAG = "LibraryFragment";
     private ListView fileList;
     private ListFilesAdapter adapter;
     private List<AudioFile> audioFiles;
@@ -44,7 +45,7 @@ public class LibraryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
-        activity.setupToolbar("Library", "Order by Folder");
+        activity.setupToolbar(getResources().getString(R.string.library_fragment_title), getResources().getString(R.string.library_fragment_subtitle));
         setHasOptionsMenu(true);
         activity.setWindowsBackground(getResources().getColor(R.color.library_color));
         View rootView = inflater.inflate(R.layout.fragment_library, container, false);
@@ -63,7 +64,6 @@ public class LibraryFragment extends Fragment {
                     final int[] animationsEnded = {0};
 
                     final AudioFile audioFile = audioFiles.get(position);
-                    activity.setupToolbar(audioFile.id3Tags.title);
                     int count = parent.getLastVisiblePosition();
                     for (int i = 0; i < count; i++) {
                         final View childAt = parent.getChildAt(i);

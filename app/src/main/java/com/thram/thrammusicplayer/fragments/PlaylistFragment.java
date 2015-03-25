@@ -19,10 +19,9 @@ import static android.os.Environment.getExternalStorageState;
 
 /**
  * Created by thram on 8/03/15.
- *
- *
  */
 public class PlaylistFragment extends Fragment {
+    public static String TAG = "PlaylistFragment";
 
     public final String DEFAULT_LIBRARY_PATH = "Music";
 
@@ -33,7 +32,7 @@ public class PlaylistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
-        activity.setupToolbar("Playlist");
+        activity.setupToolbar(getResources().getString(R.string.playlist_fragment_title), getResources().getString(R.string.playlist_fragment_subtitle));
         activity.setWindowsBackground(getResources().getColor(R.color.playlist_color));
         //getting SDcard root path
         final String state = getExternalStorageState();

@@ -10,6 +10,24 @@
     <string name="cd_background">Background</string>
     <string name="icon_label">Icon</string>
 
+    <!--FRAGMENT DEFAULT TITLES-->
+    <string name="home_fragment_title">Welcome!</string>
+    <string name="home_fragment_subtitle">to Thram Music Player ┐(・。・┐) ♪</string>
+    <string name="player_fragment_title">Player</string>
+    <string name="player_fragment_subtitle">Playing your favourite music</string>
+    <string name="library_fragment_title">Library</string>
+    <string name="library_fragment_subtitle">Look for something cool!</string>
+    <string name="news_fragment_title">News</string>
+    <string name="news_fragment_subtitle">Always informed</string>
+    <string name="playlist_fragment_title">Playlist</string>
+    <string name="playlist_fragment_subtitle">Mix them as you want</string>
+    <string name="lyrics_fragment_title">Lyrics</string>
+    <string name="lyrics_fragment_subtitle">Want to sing? ♪(o^0^)o♪</string>
+    <string name="settings_fragment_title">Settings</string>
+    <string name="settings_fragment_subtitle">Settings and stuff</string>
+
+
+    <!--HOME PAGE-->
     <string name="player_card_title">Player</string>
     <string name="player_card_description">Let\'s start playing some music!</string>
     <string name="library_card_title">Library</string>
@@ -21,11 +39,16 @@
     <string name="lyrics_card_title">Lyrics</string>
     <string name="lyrics_card_description">Look for a lyric to sing your favourites songs.</string>
     <string name="settings_card_title">Settings</string>
-    <string name="settings_card_description">Settings and stuff.</string>
+    <string name="settings_card_description">Settings and stuff. ¯\_(ツ)_/¯</string>
+
+    <!--LIBRARY-->
     <string name="order_label">Order</string>
     <string name="playing_label">Playing</string>
     <string name="music_data_view_label">Music Data</string>
     <string name="unknown_track">Unknown Track</string>
     <string name="unknown_artist">Unknown Artist</string>
+
+    <!--PLAYER-->
+    <string name="select_from_lib">Select a file from the library… (⌒_⌒;) </string>
     <string name="corrupted_file">Can\'t reproduce this file. It seems corrupted.（；¬＿¬) </string>
 </resources>

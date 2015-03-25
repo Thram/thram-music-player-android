@@ -23,6 +23,7 @@ import static android.os.Environment.getExternalStorageState;
  * Use https://github.com/matshofman/Android-RSS-Reader-Library to get info from the best music magazines.
  */
 public class NewsFragment extends Fragment {
+    public static String TAG = "NewsFragment";
 
     public final String DEFAULT_LIBRARY_PATH = "Music";
 
@@ -33,7 +34,7 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
-        activity.setupToolbar("News");
+        activity.setupToolbar(getResources().getString(R.string.news_fragment_title), getResources().getString(R.string.news_fragment_subtitle));
         activity.setWindowsBackground(getResources().getColor(R.color.news_color));
         //getting SDcard root path
         final String state = getExternalStorageState();

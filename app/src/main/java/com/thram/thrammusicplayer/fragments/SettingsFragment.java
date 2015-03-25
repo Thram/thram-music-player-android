@@ -23,6 +23,7 @@ import static android.os.Environment.getExternalStorageState;
  * Setup library path, equalizer presets, account?
  */
 public class SettingsFragment extends Fragment {
+    public static String TAG = "LibraryFragment";
 
     public final String DEFAULT_LIBRARY_PATH = "Music";
 
@@ -33,7 +34,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
-        activity.setupToolbar("Settings");
+        activity.setupToolbar(getResources().getString(R.string.settings_fragment_title), getResources().getString(R.string.settings_fragment_subtitle));
         activity.setWindowsBackground(getResources().getColor(R.color.settings_color));
         //getting SDcard root path
         final String state = getExternalStorageState();

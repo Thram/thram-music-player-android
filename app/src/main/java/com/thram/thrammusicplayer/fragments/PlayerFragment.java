@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thram.thrammusicplayer.App;
 import com.thram.thrammusicplayer.R;
@@ -33,6 +32,7 @@ import pl.droidsonroids.gif.GifImageView;
  * Player Fragment
  */
 public class PlayerFragment extends Fragment {
+    public static String TAG = "PlayerFragment";
 
     private static final float VISUALIZER_HEIGHT_DIP = 200f;
     private AudioFile audioFile;
@@ -49,6 +49,8 @@ public class PlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         activity = (ThramMusicPlayerActivity) getActivity();
+        if (audioFile != null)
+            activity.setupToolbar(audioFile.id3Tags.title);
         activity.setWindowsBackground(getResources().getColor(R.color.player_color));
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_player, container, false);
         GifImageView gifView = (GifImageView) rootView.findViewById(R.id.background);
@@ -61,8 +63,9 @@ public class PlayerFragment extends Fragment {
         }
         getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
         if (audioFile == null && !MediaPlayerManager.isPlaying()) {
-            activity.changeFragment(LibraryFragment.newInstance(), "Library Fragment");
-            Toast.makeText(getActivity(), "Select a file from the library...", Toast.LENGTH_LONG).show();
+            activity.popBackStack();
+            activity.changeFragment(LibraryFragment.newInstance(), LibraryFragment.TAG);
+            App.showToast(getResources().getString(R.string.select_from_lib));
         } else {
             setupMediaPlayer();
         }
@@ -78,7 +81,9 @@ public class PlayerFragment extends Fragment {
             MediaPlayerManager.start();
             mStatusTextView.setText("Playing audio...");
         } catch (MediaPlayerManager.FileException e) {
-            activity.changeFragment(LibraryFragment.newInstance(), "Library Fragment");
+            activity.popBackStack();
+            activity.changeFragment(LibraryFragment.newInstance(), LibraryFragment.TAG);
+            activity.popBackStack();
             App.showToast(e.getMessage());
             e.printStackTrace();
         }
