@@ -7,8 +7,10 @@ import android.media.MediaPlayer;
 import android.media.audiofx.Equalizer;
 import android.media.audiofx.Visualizer;
 import android.net.Uri;
+import android.os.Handler;
 
 import com.thram.thrammusicplayer.App;
+import com.thram.thrammusicplayer.R;
 
 import java.io.IOException;
 
@@ -16,9 +18,6 @@ import java.io.IOException;
  * Created by thram on 10/03/15.
  */
 public class MediaPlayerManager {
-    private static float volume = 1;
-    private static float speed = 0.05f;
-    private static float fadeDuration = 1;
     private static MediaPlayer currentPlayer = null;
     private static MediaPlayer auxPlayer = null;
     private static Visualizer visualizer;
@@ -26,13 +25,18 @@ public class MediaPlayerManager {
     public static AudioManager audioManager;
 
 
-    public static void prepare(Uri uri) throws IOException {
+    public static void prepare(Uri uri) throws FileException {
         auxPlayer = MediaPlayer.create(App.context, uri);
         if (audioManager == null) {
             audioManager = (AudioManager) App.context.getSystemService(Context.AUDIO_SERVICE);
         }
-        setupVisualizer();
-        setupEqualizer();
+        if (auxPlayer != null) {
+            setupVisualizer();
+            setupEqualizer();
+        } else {
+            throw new FileException(App.context.getResources().getString(R.string.corrupted_file));
+        }
+
 
     }
 
@@ -90,31 +94,58 @@ public class MediaPlayerManager {
     }
 
     private static void crossFade() {
-        MediaPlayerManager.fadeOut(currentPlayer, fadeDuration);
-        MediaPlayerManager.fadeIn(auxPlayer, fadeDuration);
+        MediaPlayerManager.fadeOut(currentPlayer, 1500);
+        MediaPlayerManager.fadeIn(auxPlayer, 1500);
         currentPlayer = auxPlayer;
         auxPlayer = null;
     }
 
-    public static void fadeOut(MediaPlayer _player, float deltaTime) {
-        do {
-            _player.setVolume(volume, volume);
-            volume -= speed * deltaTime;
-            if (volume < 0.0f) {volume = 0.0f;}
-        } while (volume != 0.0f);
-        _player.stop();
-        _player.release();
+    public static void fadeOut(final MediaPlayer _player, final int duration) {
+        final float deviceVolume = getDeviceVolume();
+        final Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            private float time = duration;
+            private float volume = 0.0f;
+
+            @Override
+            public void run() {
+                if (!_player.isPlaying())
+                    _player.start();
+                // can call h again after work!
+                time -= 100;
+                volume = (deviceVolume * time) / duration;
+                _player.setVolume(volume, volume);
+                if (time > 0)
+                    h.postDelayed(this, 100);
+                else {
+                    _player.stop();
+                    _player.release();
+                }
+            }
+        }, 100); // 1 second delay (takes millis)
+
 
     }
 
-    public static void fadeIn(MediaPlayer _player, float deltaTime) {
-        _player.setVolume(0, 0);
-        _player.start();
-        do {
-            _player.setVolume(volume, volume);
-            volume += speed * deltaTime;
-            if (volume > 1.0f) {volume = 1.0f;}
-        } while (volume != 1.0f);
+    public static void fadeIn(final MediaPlayer _player, final int duration) {
+        final float deviceVolume = getDeviceVolume();
+        final Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            private float time = 0.0f;
+            private float volume = 0.0f;
+
+            @Override
+            public void run() {
+                if (!_player.isPlaying())
+                    _player.start();
+                // can call h again after work!
+                time += 100;
+                volume = (deviceVolume * time) / duration;
+                _player.setVolume(volume, volume);
+                if (time < duration)
+                    h.postDelayed(this, 100);
+            }
+        }, 100); // 1 second delay (takes millis)
 
     }
 
@@ -154,5 +185,19 @@ public class MediaPlayerManager {
 
     public static boolean isPlaying() {
         return (currentPlayer != null && currentPlayer.isPlaying()) || (auxPlayer != null && auxPlayer.isPlaying());
+    }
+
+    public static float getDeviceVolume() {
+        int volumeLevel = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+        return (float) volumeLevel / maxVolume;
+    }
+
+    public static class FileException extends IOException {
+
+        public FileException(String string) {
+            super(string);
+        }
     }
 }

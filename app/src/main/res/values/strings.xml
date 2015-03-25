@@ -27,4 +27,5 @@
     <string name="music_data_view_label">Music Data</string>
     <string name="unknown_track">Unknown Track</string>
     <string name="unknown_artist">Unknown Artist</string>
+    <string name="corrupted_file">Can\'t reproduce this file. It seems corrupted.（；¬＿¬) </string>
 </resources>

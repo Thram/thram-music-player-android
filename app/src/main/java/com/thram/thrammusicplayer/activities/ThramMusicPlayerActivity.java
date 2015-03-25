@@ -2,10 +2,12 @@ package com.thram.thrammusicplayer.activities;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.thram.thrammusicplayer.R;
 
@@ -47,7 +49,6 @@ public class ThramMusicPlayerActivity extends ActionBarActivity {
     public void setupToolbar(String title) {
         setupToolbar(title, null);
     }
-
 
 }
 

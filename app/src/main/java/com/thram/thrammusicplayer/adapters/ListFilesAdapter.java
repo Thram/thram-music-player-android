@@ -12,8 +12,6 @@ import android.widget.ViewFlipper;
 import com.thram.thrammusicplayer.App;
 import com.thram.thrammusicplayer.R;
 import com.thram.thrammusicplayer.model.AudioFile;
-import com.thram.thrammusicplayer.utils.AnimationFactory;
-import com.thram.thrammusicplayer.utils.Animations;
 
 import java.util.List;
 

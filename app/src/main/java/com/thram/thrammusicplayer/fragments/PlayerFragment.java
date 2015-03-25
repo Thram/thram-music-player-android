@@ -37,6 +37,7 @@ public class PlayerFragment extends Fragment {
     private static final float VISUALIZER_HEIGHT_DIP = 200f;
     private AudioFile audioFile;
     private ViewGroup rootView;
+    private ThramMusicPlayerActivity activity;
 
 
     public static PlayerFragment newInstance(AudioFile audioFile) {
@@ -47,7 +48,7 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ThramMusicPlayerActivity activity = (ThramMusicPlayerActivity) getActivity();
+        activity = (ThramMusicPlayerActivity) getActivity();
         activity.setWindowsBackground(getResources().getColor(R.color.player_color));
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_player, container, false);
         GifImageView gifView = (GifImageView) rootView.findViewById(R.id.background);
@@ -72,15 +73,16 @@ public class PlayerFragment extends Fragment {
         TextView mStatusTextView = (TextView) rootView.findViewById(R.id.player_status);
         try {
             MediaPlayerManager.prepare(Uri.parse(audioFile.fileUri));
-        } catch (IOException e) {
+            setupVisualizerFxAndUI();
+            setupEqualizerFxAndUI();
+            MediaPlayerManager.start();
+            mStatusTextView.setText("Playing audio...");
+        } catch (MediaPlayerManager.FileException e) {
+            activity.changeFragment(LibraryFragment.newInstance(), "Library Fragment");
+            App.showToast(e.getMessage());
             e.printStackTrace();
         }
 
-        setupVisualizerFxAndUI();
-        setupEqualizerFxAndUI();
-//
-        MediaPlayerManager.start();
-        mStatusTextView.setText("Playing audio...");
     }
 
     private void setupEqualizerFxAndUI() {

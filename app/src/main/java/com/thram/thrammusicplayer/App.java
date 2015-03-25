@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -51,6 +53,15 @@ public class App extends Application {
             return resources.getDimensionPixelSize(resourceId);
         }
         return 0;
+    }
+
+    public static void showToast(final String message) {
+        final Handler handler = new Handler(context.getMainLooper());
+        handler.post(new Runnable() {
+            public void run() {
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }
